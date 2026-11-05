@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+    {% if  cat %}
+      {% include 'common/page_title.html' with title=cat.name %}
+    {% else %}
+      {% include 'common/page_title.html' with title='All categories' %}
+    {% endif %}
+    
+    <div class="container my-5">
+      <section>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="list-group">
+              <a href="{% url 'store_category' %}"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">{% trans 'All Category' %}</a>
+              {% for category in categories %}
+              <a href="{% url 'store_category' category.id %}"
+                class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                {{category.name}}</a>
+                {% endfor %}
+            </div>
+          </div>
+          <div class="col-md-9">
+            <div class="row"> 
+            {% for product in page_obj%}
+              <div class="col-md-4">
+                
+                {%include 'common/product_card.html' with product=product %}
+                
+              
+              </div>
+              {%empty%}
+                <div class="col-12 text-center py-5">
+        <p>{%trans 'There are no products available in this category currently'%}</p>
+      </div>
+              {% endfor %}
+              {% if page_obj.paginator.count > 0 %}
+                <nav>
+                  <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li >
+                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">{%trans 'previews'%}</a>
+                    </li>
+                    {%else%}
+                      <li class="disabled">
+                      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">{%trans 'previews'%}</a>
+                    </li>
+                    {%endif%}
+                    {% if page_obj.has_next %}
+                    <li >
+                      <a class="page-link" href="#" tabindex="1" aria-disabled="true">{%trans 'next'%}</a>
+                    </li>
+                    {%else%}
+                      <li class="disabled">
+                      <a class="page-link" href="#" tabindex="1" aria-disabled="true">{%trans 'next'%}</a>
+                    </li>
+                    {%endif%}
+                    
+                </nav>
+             {%endif%}
+          </div>
+        </div>
+      </section>
+    </div>
+{%endblock%}

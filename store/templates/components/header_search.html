@@ -1,0 +1,22 @@
+{% load i18n %}
+<form class="d-flex mx-auto" action="{%url 'store_category'%}">
+  <div class="input-group">
+    <input
+      name="query"
+      value="{{ request.GET.query }}"
+      type="text"
+      class="form-control"
+      style="width: 400px"
+      placeholder="بحث عن منتتجات"
+    />
+    <select class="form-control" name='Category' style="width: 160px">
+      <option>{% trans 'All categories' %}</option>
+      {%for cat in categories%}
+      <option value="{{cat.id}}" {% if cat.id|slugify  == request.GET.Category %} selected {%endif%}>{{cat.name}}</option>
+      {%endfor%}
+    </select>
+    <button class="btn btn-primary" type="submit">
+      <i class="lni lni-search-alt text-white"></i>
+    </button>
+  </div>
+</form>

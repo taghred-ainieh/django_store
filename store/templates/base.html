@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ar" class="h-100" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>متجر كتب</title>
+  <script defer src="{% static 'js/830.66d67bb4.js' %}"></script>
+  <script defer src="{% static 'js/app.2fe33112.js' %}"></script>
+  <link href="{% static 'css/830.css' %}" rel="stylesheet">
+  <link href="{% static 'css/app.css' %}" rel="stylesheet">
+</head>
+
+<body class="d-flex flex-column h-100 bg-light">
+    {%include 'components/header.html'%}
+    {% if messages %}
+      <div class="messages-container" style="padding: 15px; margin: 10px auto; max-width: 1200px;">
+          {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}" style="padding: 15px; margin-bottom: 10px; border-radius: 4px; background-color: #d1e7dd; color: #0f5132; border: 1px solid #badbcc;">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+  {% endif %}
+  <main>
+    {%block content%}
+    {% endblock %}
+  </main>
+    {%include 'components/footer.html'%}
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script src="https://js.stripe.com/v3/" defer></script>
+     <script src="{% static 'js/stripe.js' %}" defer></script>
+    {% comment %} <script src="{% static 'js/main.js' %}"></script>  {% endcomment %}
+</body>
+
+</html>

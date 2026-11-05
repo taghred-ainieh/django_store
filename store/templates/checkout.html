@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<div class="bg-white py-4">
+  <h1 class="text-center text-secondary">{% trans 'checkout' %}</h1>
+</div>
+<div class="container my-5">
+  <div class="row bd-highlight">
+    <div class="col-md-12">
+      <div class="alert alert-success py-3">
+        <h3 class="text-center">{% trans 'price' %}</h3>
+        <h3 class="text-center">{{ cart_total }} $</h3>
+      </div>
+    </div>
+    
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          
+          <!-- 💡 الفورم الشامل لبيانات المستخدم بالكامل مع أزرار الدفع -->
+          <form method="POST">
+            {% csrf_token %} 
+            
+            <h4 class="mb-3">{% trans 'your information' %}</h4>
+            <div class="row">
+              <!-- حقل الاسم الأول -->
+              <div class="col-md-6 mb-3">
+                <label for="firstNameInput" class="form-label">{% trans 'first_name' %}</label>
+                <input type="text" class="form-control" id="firstNameInput" name="first_name" required>
+              </div>
+              
+              <!-- حقل الاسم الأخير -->
+              <div class="col-md-6 mb-3">
+                <label for="lastNameInput" class="form-label">{% trans 'last_name' %}</label>
+                <input type="text" class="form-control" id="lastNameInput" name="last_name" required>
+              </div>
+
+              <!-- حقل البريد الإلكتروني -->
+              <div class="col-12 mb-3">
+                <label for="emailInput" class="form-label">{% trans 'email' %}</label>
+                <input type="email" class="form-control" id="emailInput" name="email" required>
+              </div>
+            </div>
+
+            <!-- قسم طرق الدفع تظهر بالأسفل داخل نفس الفورم لتُرسل مع البيانات -->
+            <h4 class="my-4">{% trans 'How would you like to pay?' %}</h4>
+            <div class="row">
+              
+              <!-- زر بطاقة الـ Credit Card (Stripe) -->
+              <div class="col-md-6">
+                <button type="submit" formaction="{% url 'create-stripe-session' %}" class="card w-100 btn btn-link text-decoration-none role-button">
+                  <div class="card-body text-center text-dark">
+                    <p class="mb-2">{% trans 'Credit Card' %}</p>
+                    <i class="lni lni-credit-cards fs-1 text-primary"></i>
+                  </div>
+                </button>
+              </div>
+
+              <!-- زر الدفع بـ PayPal -->
+            
+
+            </div>
+          </form> <!-- إغلاق الفورم النهائي -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

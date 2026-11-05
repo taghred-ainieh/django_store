@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 20:24+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: .\store\templates\admin\store\order\change_form.html:9
+msgid "Order & Customer Information"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:13
+msgid "First Name"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:14
+msgid "Email"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:15
+msgid "Payment Method"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:16
+msgid "Total Amount"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:19
+msgid "Products"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:25
+msgid "Product Name"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:26
+msgid "Price"
+msgstr ""
+
+#: .\store\templates\admin\store\order\change_form.html:38
+msgid "No products found for this order."
+msgstr ""
+
+#: .\store\templates\cart.html:5
+msgid "My_Cart"
+msgstr ""
+
+#: .\store\templates\cart.html:56 .\store\templates\checkout.html:11
+#: .\store\templates\emails\order.html:139
+msgid "price"
+msgstr ""
+
+#: .\store\templates\cart.html:60
+msgid "total"
+msgstr ""
+
+#: .\store\templates\cart.html:67
+msgid "Procced to checkout"
+msgstr ""
+
+#: .\store\templates\category.html:16
+msgid "All Category"
+msgstr ""
+
+#: .\store\templates\category.html:35
+msgid "There are no products available in this category currently"
+msgstr ""
+
+#: .\store\templates\category.html:43 .\store\templates\category.html:47
+msgid "previews"
+msgstr ""
+
+#: .\store\templates\category.html:52 .\store\templates\category.html:56
+msgid "next"
+msgstr ""
+
+#: .\store\templates\checkout.html:5
+msgid "checkout"
+msgstr ""
+
+#: .\store\templates\checkout.html:24
+msgid "your information"
+msgstr ""
+
+#: .\store\templates\checkout.html:28
+msgid "first_name"
+msgstr ""
+
+#: .\store\templates\checkout.html:34
+msgid "last_name"
+msgstr ""
+
+#: .\store\templates\checkout.html:40
+msgid "email"
+msgstr ""
+
+#: .\store\templates\checkout.html:46
+msgid "How would you like to pay?"
+msgstr ""
+
+#: .\store\templates\checkout.html:53
+msgid "Credit Card"
+msgstr ""
+
+#: .\store\templates\common\product_card.html:7
+msgid "add to cart"
+msgstr ""
+
+#: .\store\templates\common\product_card.html:8
+msgid "view"
+msgstr ""
+
+#: .\store\templates\components\footer.html:4
+msgid "© 2026 All rights reserved."
+msgstr ""
+
+#: .\store\templates\components\header.html:4
+msgid "app_name"
+msgstr ""
+
+#: .\store\templates\components\header.html:14
+msgid "cart"
+msgstr ""
+
+#: .\store\templates\components\header_search.html:13
+msgid "All categories"
+msgstr ""
+
+#: .\store\templates\emails\order.html:50
+msgid "store_book"
+msgstr ""
+
+#: .\store\templates\emails\order.html:60
+msgid "customer"
+msgstr ""
+
+#: .\store\templates\emails\order.html:74
+msgid "order:"
+msgstr ""
+
+#: .\store\templates\emails\order.html:88
+msgid "date"
+msgstr ""
+
+#: .\store\templates\emails\order.html:128
+msgid "book"
+msgstr ""
+
+#: .\store\templates\emails\order.html:178
+msgid "the total price"
+msgstr ""
+
+#: .\store\templates\product.html:27
+msgid "add_to_card"
+msgstr ""
+
+#: .\store\templates\product.html:49
+msgid "description"
+msgstr ""
+
+#: .\store\templates\product.html:63
+msgid "author"
+msgstr ""
+
+#: .\store\views.py:72
+msgid "the product has been added to your cart"
+msgstr ""
+
+#: .\store\views.py:84
+msgid "the product has been removed from your cart"
+msgstr ""

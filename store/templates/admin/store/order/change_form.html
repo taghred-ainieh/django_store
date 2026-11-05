@@ -1,0 +1,70 @@
+{% extends 'admin/change_form.html' %}
+{% load i18n %}
+
+{% block content %}
+<!-- الإبقاء على المحتوى الأصلي لصفحة التعديل الافتراضية للأدمن حتى لا تختفي الحقول الأساسية للأوردر -->
+{{ block.super }}
+
+<div class="module" style="margin-top: 20px; padding: 15px; background: var(--body-bg); border: 1px solid var(--border-color); border-radius: 4px;">
+    <h2 style="margin-top: 0; color: var(--primary);">📋 {% trans 'Order & Customer Information' %}</h2>
+    <hr style="border-color: var(--border-color); margin-bottom: 15px;">
+    
+    <div style="margin-bottom: 20px; line-height: 1.6;">
+        <p><strong>{% trans 'First Name' %}:</strong> {{ original.transaction.customer.first_name|default:"-" }}</p>
+        <p><strong>{% trans 'Email' %}:</strong> {{ original.transaction.customer.email|default:"-" }}</p>
+        <p><strong>{% trans 'Payment Method' %}:</strong> <span class="tags" style="background: var(--darkened-bg); padding: 3px 8px; border-radius: 3px;">{{ original.transaction.get_payment_method_display }}</span></p>
+        <p><strong>{% trans 'Total Amount' %}:</strong> <strong style="color: #28a745;">{{ original.transaction.amount }} $</strong></p>
+    </div>
+
+    <h2 style="color: var(--primary);">🛒 {% trans 'Products' %}</h2>
+    
+    <!-- جدول منسق متوافق مع تصميم أدمن جانغو الافتراضي -->
+    <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+            <tr style="background: var(--primary); color: white;">
+                <th style="padding: 10px; text-align: right; border: 1px solid var(--border-color);">{% trans "Product Name" %}</th>
+                <th style="padding: 10px; text-align: right; border: 1px solid var(--border-color); width: 25%;">{% trans "Price" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- هنا نقوم بعمل اللوب على المنتجات الكاملة التي جلبناها من البايثون -->
+            {% for product in original.orderproduct_set.all  %}
+            <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>{{ product.product.name }}</strong></td>
+                <td style="padding: 10px; border: 1px solid var(--border-color); color: #28a745;">{{ product.price }} $</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" style="padding: 15px; text-align: center; color: var(--body-loud-color);">{% trans "No products found for this order." %}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+
+
+
+{% comment %} {%extends 'admin/change_form.html'%}
+{% load i18n %}
+{%block content %}
+ <div class="module">
+        <div>
+          <div class=''>{{ original.transaction.customer.first_name }}</div>
+          <div class='readonly'>{{original.transaction.amount}} </div>
+          <div class='readonly'>{{original.transaction.customer.email}} </div>
+          <div class='readonly'>{{original.transaction.get_payment_method_display}} </div>
+        </div>
+        <h1>{%trans 'product'%}</h1>
+        <table><thead>
+            <tr>
+                <th>{% trans "price" %}</th>
+
+               <th>{%trans "name" %}</th>
+        </tr>
+        <tr> {% for item in original.transaction.items %}
+            {{item.name}} {{item.price}},</tr>
+        </thead></table>
+ </div>
+{% endblock %} {% endcomment %}

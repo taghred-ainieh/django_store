@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{%block content%}
+    <div class="bg-white py-4">
+      <h1 class="text-center text-secondary">{%trans 'My_Cart'%} </h1>
+    </div>
+    <div class="container my-5">
+      {% for product in cart_product%}
+      <div class="card my-2">
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2 text-center mb-2">
+              <img src="{{product.image.url}}" alt="{{product.name}}" title="" width="150" class="img-thumbnail" />
+            </div>
+            <div class="col my-auto text-center">
+              {{product.name}}
+            </div>
+            <div class="col-md-2 col-xs-6 my-auto text-center">
+              <strong>{{product.price}} $</strong>
+            </div>
+            <div class="col-md-2 my-auto text-center">
+              <a href="{% url 'cart_remove' product.id %}" class="btn btn-secondary my-2">
+    <i class="lni lni-trash-can text-white"></i>
+</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%empty%}
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f9f9f9; border-radius: 8px; max-width: 450px; margin: 50px auto; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); direction: rtl;">
+          
+          <!-- أيقونة السلة الفارغة (يمكنك استخدام هذه الأيقونة النصية أو استبدالها بصورة استاتيكية أدناه) -->
+          <div style="font-size: 70px; margin-bottom: 20px; color: #9e9e9e;">
+              🗑️️
+              <!-- أو إذا كان عندك صورة مخصصة في الملفات الاستاتيكية، احذف الرمز العلوي وفعل السطر التالي: -->
+             
+          
+          <!-- نصوص التنبيه -->
+          <h2 style="color: #333; font-size: 24px; margin: 0 0 10px 0; font-weight: bold;">سلة المشتريات فارغة!</h2>
+          <p style="color: #666; font-size: 16px; margin: 0 0 30px 0; line-height: 1.5;">يبدو أنك لم تقم بإضافة أي منتجات إلى سلتك بعد.</p>
+          
+          <!-- زر العودة للتسوق برابط مرن (يفضل استخدام اسم الـ url في django) -->
+        
+      </div>
+      {%endfor%}
+
+      {% if cart_total > 0 %}
+      <div class="row bd-highlight">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <td>{%trans 'price'%}</td>
+                    <td> {{cart_total}}$</td>
+                  </tr>
+                  <tr>
+                    <td>{%trans 'total'%}</td>
+                    <td>{{cart_total}} $</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="d-grid gap-2">
+                <a href="{%url 'store_checkout'%}" class="btn btn-primary">
+                  {%trans 'Procced to checkout'%}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {%endif%}
+    </div>
+  </main>
+  <footer class="footer mt-auto py-4 bg-secondary">
+    <div class="container text-center">
+      <span class="text text-light">© 2022 جميع الحقوق محفوظة.</span>
+    </div>
+{%endblock%}

@@ -1,0 +1,90 @@
+{% extends 'admin/base_site.html' %}
+{% load i18n %}
+
+{% block content %}
+  
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@8.6.0/dist/apexcharts.min.js"></script>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My First ApexChart</title>
+</head>
+<body>
+   <h1>{% trans "sales_weekly" %}</h>
+  <div id="weekly_chart" style='width:calc(100% - 275px)' data-list='{{weekly_state}}'></div>
+  
+
+
+   <h1>{% trans "sales_monthly" %}</h>
+  <div id="monthly_chart" style='width:calc(100% - 275px)'data-list='{{monthly_state}}'></div>
+
+   <h1>{% trans "sales_yearly" %}</h>
+  <div id="year_chart" style='width:calc(100% - 275px)' data-list='{{yearly_state}}'></div>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script>
+    // 1. التشارت الأسبوعي
+    // تم تصحيح المتغير ليكون weekly_state ليتوافق مع الـ Map بالأسفل
+    const weekly_state = JSON.parse(document.getElementById('weekly_chart').dataset.list);
+    
+    var weekly_chart = new ApexCharts(document.querySelector('#weekly_chart'), {
+      chart: {
+        type: 'bar',
+        height: 200,
+      },
+      series: [{
+        name: 'sales',
+        data: weekly_state.map(e => e.sum)
+      }],
+      xaxis: {
+        // تم تصحيح علامات الاقتباس إلى Backticks والخط المائل لـ \n
+        categories: weekly_state.map(e => `${e.year}\n${e.week}`)
+      }
+    });
+    weekly_chart.render();
+
+
+    // 2. التشارت الشهري
+    const monthly_state = JSON.parse(document.getElementById('monthly_chart').dataset.list);
+    
+    var monthly_chart = new ApexCharts(document.querySelector('#monthly_chart'), {
+      chart: {
+        type: 'bar',
+        height: 200,
+      },
+      series: [{
+        name: 'sales',
+        data: monthly_state.map(e => e.sum)
+      }],
+      xaxis: {
+        // تم تصحيح علامات الاقتباس لدمج النص والسنة والشهر في سطرين بشكل سليم
+        categories: monthly_state.map(e => `${e.year}\n${e.month}`)
+      }
+    });
+    monthly_chart.render();
+ 
+
+    // 3. التشارت السنوي
+    const yearly_state = JSON.parse(document.getElementById('year_chart').dataset.list);
+    
+    var year_chart = new ApexCharts(document.querySelector('#year_chart'), {
+      chart: {
+        type: 'bar',
+        height: 200,
+      },
+      series: [{
+        name: 'sales',
+        data: yearly_state.map(e => e.sum)
+      }],
+      xaxis: {
+        // تم تصحيح علامات الاقتباس إلى Backticks لتعمل الـ $ بشكل برمي صحيح
+        categories: yearly_state.map(e => `${e.year}`)
+      }
+    });
+    year_chart.render();
+</script>
+
+</body>
+</html>
+{% endblock %}
